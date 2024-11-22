@@ -65,7 +65,7 @@ jobs:
     if: github.event_name == 'release'
     steps:
       - name: Download halo-plugin-auto-backup jar
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: halo-plugin-auto-backup
           path: build/libs

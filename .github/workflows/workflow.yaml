@@ -65,7 +65,7 @@ jobs:
     if: github.event_name == 'release'
     steps:
       - name: Download halo-plugin-auto-backup jar
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2
         with:
           name: halo-plugin-auto-backup
           path: build/libs
@@ -80,7 +80,7 @@ jobs:
           echo "ARTIFACT_NAME=${ARTIFACT_NAME}" >> $GITHUB_ENV
           echo "RELEASE_ID=${{ github.event.release.id }}" >> $GITHUB_ENV
       - name: Upload a Release Asset
-        uses: actions/github-script@v3
+        uses: actions/github-script@v2
         if: github.event_name == 'release'
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}

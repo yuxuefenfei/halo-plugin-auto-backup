@@ -75,3 +75,4 @@ halo:
 
 最后重启 Halo 项目即可。
 "# halo-plugin-auto-backup" 
+"# yuxuefenfei-halo-plugin-auto-backup" 

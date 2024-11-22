@@ -1,0 +1,28 @@
+# nonk8s
+apiVersion: v1alpha1
+kind: Setting
+metadata:
+  name: halo-plugin-auto-backup-settings
+spec:
+  forms:
+    - group: base
+      label: 基本设置
+      formSchema:
+        - $formkit: select
+          label: 按天/小时
+          name: timeUnit
+          validation: required
+          value: 'DAY'
+          options:
+            - label: 小时
+              value: HOUR
+            - label: 天
+              value: DAY
+        - $formkit: select
+          label: 时间间隔
+          name: interval
+          validation: required|Number
+          value: 3
+          action: /apis/autobackup.wangwenzhu.cn/v1alpha1/autobackup/config/interval
+          requestOption:
+            method: GET

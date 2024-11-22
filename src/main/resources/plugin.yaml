@@ -1,0 +1,22 @@
+# nonk8s
+apiVersion: plugin.halo.run/v1alpha1
+kind: Plugin
+metadata:
+  name: halo-plugin-auto-backup
+spec:
+  enabled: true
+  requires: ">=2.11.0"
+  author:
+    name: 贴心小王
+    website: https://wangwenzhu.cn
+  logo: logo.svg
+  configMapName: halo-plugin-auto-backup-configmap
+  settingName: halo-plugin-auto-backup-settings
+  homepage: https://github.com/yuxuefenfei/halo-plugin-auto-backup#readme
+  repo: https://github.com/yuxuefenfei/halo-plugin-auto-backup
+  issues: https://github.com/yuxuefenfei/halo-plugin-auto-backup/issues
+  displayName: "自动备份插件"
+  description: "一个自动备份插件"
+  license:
+    - name: "GPL-3.0"
+      url: "https://github.com/yuxuefenfei/halo-plugin-auto-backup/blob/main/LICENSE"

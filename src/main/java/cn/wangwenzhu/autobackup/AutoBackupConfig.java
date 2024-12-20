@@ -8,30 +8,32 @@ public class AutoBackupConfig {
 
     private String timeUnit;
     private int interval;
+    private int maxBackupCount;
 
     public AutoBackupConfig() {
     }
 
-    public AutoBackupConfig(String timeUnit, int interval) {
+    public AutoBackupConfig(String timeUnit, int interval, int maxBackupCount) {
         this.timeUnit = timeUnit;
         this.interval = interval;
+        this.maxBackupCount = maxBackupCount;
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof AutoBackupConfig that)) {
             return false;
         }
-        AutoBackupConfig that = (AutoBackupConfig) o;
-        return interval == that.interval && Objects.equals(timeUnit, that.timeUnit);
+        return interval == that.interval &&
+            maxBackupCount == that.maxBackupCount &&
+            Objects.equals(timeUnit, that.timeUnit);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(timeUnit, interval);
+        return Objects.hash(timeUnit, interval, maxBackupCount);
     }
 }

@@ -26,3 +26,19 @@ spec:
           action: /apis/autobackup.wangwenzhu.cn/v1alpha1/autobackup/config/interval
           requestOption:
             method: GET
+        - $formkit: select
+          label: 备份最大保存数量
+          name: maxBackupCount
+          validation: required
+          value: 5
+          options:
+            - label: 1
+              value: 1
+            - label: 2
+              value: 2
+            - label: 3
+              value: 3
+            - label: 4
+              value: 4
+            - label: 5
+              value: 5

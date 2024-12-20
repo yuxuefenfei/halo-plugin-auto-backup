@@ -16,7 +16,7 @@ spec:
   repo: https://github.com/yuxuefenfei/halo-plugin-auto-backup
   issues: https://github.com/yuxuefenfei/halo-plugin-auto-backup/issues
   displayName: "自动备份插件"
-  description: "一个自动备份插件"
+  description: "支持按天/小时进行自动备份、自动删除冗余备份"
   license:
     - name: "GPL-3.0"
       url: "https://github.com/yuxuefenfei/halo-plugin-auto-backup/blob/main/LICENSE"

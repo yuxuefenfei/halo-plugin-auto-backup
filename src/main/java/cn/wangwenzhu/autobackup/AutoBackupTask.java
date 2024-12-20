@@ -1,5 +1,7 @@
 package cn.wangwenzhu.autobackup;
 
+import static run.halo.app.extension.index.query.QueryFactory.all;
+
 import cn.wangwenzhu.autobackup.scheduled.AbstractReschedulingConfigurer;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -8,11 +10,13 @@ import java.util.Map;
 import java.util.Optional;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.time.DateUtils;
+import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.config.Task;
 import org.springframework.scheduling.config.TriggerTask;
 import org.springframework.scheduling.support.PeriodicTrigger;
 import org.springframework.stereotype.Component;
 import run.halo.app.extension.ExtensionClient;
+import run.halo.app.extension.ListOptions;
 import run.halo.app.extension.Metadata;
 import run.halo.app.migration.Backup;
 import run.halo.app.plugin.SettingFetcher;
@@ -51,6 +55,20 @@ public class AutoBackupTask extends AbstractReschedulingConfigurer {
         backup.getSpec().setExpiresAt(expiresAt.toInstant());
 
         client.create(backup);
+
+        Optional<AutoBackupConfig> config =
+            settingFetcher.fetch("base", AutoBackupConfig.class);
+
+        if (config.isPresent()) {
+            int maxBackupCount = config.get().getMaxBackupCount();
+            client.listAll(
+                    Backup.class,
+                    ListOptions.builder().fieldQuery(all()).build(),
+                    Sort.by(Sort.Order.desc("metadata.creationTimestamp"))
+                ).stream()
+                .skip(maxBackupCount)
+                .forEach(client::delete);
+        }
 
         log.info("Auto backup task finished");
     }

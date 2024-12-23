@@ -2,6 +2,10 @@
 
 Halo自动备份插件。
 
+![img_01.png](images/img_01.png)
+![img_02.png](images/img_02.png)
+![img_03.png](images/img_03.png)
+
 ## 介绍
 Halo自动备份插件，可以定时备份Halo的数据库和文件。
 

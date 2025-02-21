@@ -18,7 +18,7 @@ public class AutoBackupEndpoint implements CustomEndpoint {
     @Override
     public RouterFunction<ServerResponse> endpoint() {
         return SpringdocRouteBuilder.route()
-            .GET("/autobackup/config/interval", this::interval,
+            .GET("/config-interval", this::interval,
                 builder -> builder.operationId("interval mapping")
                     .description("autobackup operation")
                     .tag("AutoBackupV1alpha1Console")

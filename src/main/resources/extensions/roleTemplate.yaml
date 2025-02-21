@@ -1,0 +1,12 @@
+apiVersion: v1alpha1
+kind: Role
+metadata:
+  name: template-halo-plugin-auto-backup-manage
+  labels:
+    halo.run/role-template: "true"
+    halo.run/hidden: "true"
+    rbac.authorization.halo.run/aggregate-to-authenticated: "true"
+rules:
+  - apiGroups: [ "autobackup.wangwenzhu.cn" ]
+    resources: [ "config-interval" ]
+    verbs: [ "get","list" ]

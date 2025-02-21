@@ -1,4 +1,3 @@
-# nonk8s
 apiVersion: v1alpha1
 kind: Setting
 metadata:
@@ -23,7 +22,7 @@ spec:
           name: interval
           validation: required|Number
           value: 3
-          action: /apis/autobackup.wangwenzhu.cn/v1alpha1/autobackup/config/interval
+          action: /apis/autobackup.wangwenzhu.cn/v1alpha1/config-interval
           requestOption:
             method: GET
         - $formkit: select

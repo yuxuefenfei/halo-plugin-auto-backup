@@ -19,7 +19,6 @@ import run.halo.app.extension.ExtensionClient;
 import run.halo.app.extension.ListOptions;
 import run.halo.app.extension.Metadata;
 import run.halo.app.migration.Backup;
-import run.halo.app.plugin.SettingFetcher;
 
 @Log4j2
 @Component
@@ -32,9 +31,9 @@ public class AutoBackupTask extends AbstractReschedulingConfigurer {
 
     private final ExtensionClient client;
 
-    private final SettingFetcher settingFetcher;
+    private final SettingFetcherCompat settingFetcher;
 
-    public AutoBackupTask(ExtensionClient client, SettingFetcher settingFetcher) {
+    public AutoBackupTask(ExtensionClient client, SettingFetcherCompat settingFetcher) {
         super(true);
         this.client = client;
         this.settingFetcher = settingFetcher;
@@ -56,8 +55,7 @@ public class AutoBackupTask extends AbstractReschedulingConfigurer {
 
         client.create(backup);
 
-        Optional<AutoBackupConfig> config =
-            settingFetcher.fetch("base", AutoBackupConfig.class);
+        Optional<AutoBackupConfig> config = settingFetcher.fetch("base", AutoBackupConfig.class);
 
         if (config.isPresent()) {
             int maxBackupCount = config.get().getMaxBackupCount();
@@ -77,8 +75,7 @@ public class AutoBackupTask extends AbstractReschedulingConfigurer {
     public Task configureTask() {
         return new TriggerTask(this::autoBackup, triggerContext -> {
 
-            Optional<AutoBackupConfig> config =
-                settingFetcher.fetch("base", AutoBackupConfig.class);
+            Optional<AutoBackupConfig> config = settingFetcher.fetch("base", AutoBackupConfig.class);
 
             if (config.isPresent()) {
                 String timeUnit = config.get().getTimeUnit();

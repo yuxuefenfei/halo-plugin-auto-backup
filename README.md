@@ -9,6 +9,10 @@
 ## 介绍
 Halo自动备份插件，可以定时备份Halo的数据库和文件。
 
+## 兼容性
+- 当前分支适配 Halo `2.23.0+`
+- 修复了 Halo 升级后 `SettingFetcher` 二进制兼容导致的启动错误
+
 ## 使用方式
 1. 下载地址：https://github.com/yuxuefenfei/halo-plugin-auto-backup/releases
 2. 插件安装：登录Halo后台，在系统->插件->安装->本地上传页面上传插件
